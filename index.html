@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Photo Editor App</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+    <script src="/JS/script.js" defer></script>
+</head>
+<body>
+    <div class="container disabled">
+        <h1>Photo Editor</h1>
+        <hr>
+        <div class="view_img">
+            <img src="/images/photo_img_1.webp" alt="photo image">
+        </div>
+
+        <div class="choose_img">
+            <button>Choose Image <img src="/images/upload_img.webp" alt="upload-img"></button>
+            <input type="file" name="" id="" accept="image/*" hidden>
+        </div>
+
+        <div class="slider">
+            <div class="filter_info">
+                <span class="name">brightness</span>
+                <span class="value">100%</span>
+            </div>
+            <input type="range" name="" id="" max="200" min="0">
+        </div>
+
+        <div class="icons_filter">
+            <p>filters</p>
+            <div class="icons_room">
+                <button class="active"><img src="/images/brightness1.webp" alt="brightness-img" width="30px" height="30px"></button>
+                <button><img src="/images/brightness1.webp" alt="brightness-img" width="30px" height="30px"></button>
+                <button><img src="/images/brightness1.webp" alt="brightness-img" width="30px" height="30px"></button>
+                <button><img src="/images/brightness1.webp" alt="brightness-img" width="30px" height="30px"></button>
+            </div>
+        </div>
+        <div class="icons_filter">
+            <p>rotate & flip</p>
+            <div class="icons_room_1">
+                <button><img src="/images/rotate.webp" alt="rotate-left" width="30px" height="30px"></button>
+                <button><img src="/images/rotate.webp" alt="rotate-left" width="30px" height="30px"></button>
+                <button><img src="/images/rotate.webp" alt="rotate-left" width="30px" height="30px"></button>
+                <button><img src="/images/rotate.webp" alt="rotate-left" width="30px" height="30px"></button>
+                
+            </div>
+        </div>
+        <div class="btn_container">
+            <button class="reset">reset filter</button>
+            <button class="save">save image</button>
+        </div>
+    </div>
+</body>
+</html>
