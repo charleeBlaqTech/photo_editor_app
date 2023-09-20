@@ -8,6 +8,7 @@ const slider_name         = document.querySelector('.filter_info .name');
 const reset_btn         = document.querySelector('.btn_container .reset');
 const save_btn         = document.querySelector('.btn_container .save');
 const icons_btn         = document.querySelectorAll('.icons_room button');
+const icons_btn_two         = document.querySelectorAll('.icons_room_1 button');
 
 
 let brightness= 100
@@ -15,6 +16,9 @@ let contrast= 100
 let saturate= 100
 let blur= 0
 let invert= 0
+let rotate= 0
+let flip_x= 1
+let flip_y= 1
 
 image_input_btn.addEventListener("click", ()=>{
     image_input.click()
@@ -79,11 +83,59 @@ slider_input.addEventListener('input',()=>{
 })   
 
 
+
+icons_btn_two.forEach((button)=>{
+
+    button.addEventListener('click', ()=>{
+        document.querySelector(".active").classList.remove('active');
+        button.classList.add('active');
+        if(button.id === "rotate_left"){
+            rotate -= 90
+        }else if(button.id === "rotate_right"){
+            rotate += 90
+        }else if(button.id === "flip_x"){
+            flip_x = flip_x ? -1 : 1
+        }else if(button.id === "flip_y"){
+           flip_y= flip_y ? -1 : 1
+        }
+
+        image_src.style.transform = `rotate(${rotate}deg) scale(${flip_x}, ${flip_y})`
+    })
+})
+
 reset_btn.addEventListener('click', ()=>{
     brightness= 100
     contrast= 100
     saturate= 100
     blur= 0
     invert= 0
+    rotate= 0
+    flip_x= 1
+    flip_y= 1
     image_src.style.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) invert(${invert}%) blur(${blur}px)`
+    image_src.style.transform = `rotate(${rotate}deg) scale(${flip_x}, ${flip_y})`
 })
+
+
+
+save_btn.addEventListener('click', ()=>{
+   const canvas= document.createElement('canvas');
+   const ctx = canvas.getContext('2d');
+   canvas.width = image_src.naturalWidth;
+   canvas.height = image_src.naturalHeight;
+
+   ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) invert(${invert}%) blur(${blur}px)`;
+
+   ctx.scale(flip_x, flip_y);
+
+   ctx.translate(canvas.width / 2, canvas.height / 2);
+   ctx.drawImage(image_src, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+
+   let link = document.createElement('a');
+   link.href = canvas.toDataURL();
+   link.download = "img.jpg";
+   link.click()
+   document.body.removeChild(link);
+})
+
+
